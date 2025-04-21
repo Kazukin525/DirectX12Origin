@@ -2,7 +2,17 @@
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
+	// メモリリークを知らせる
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	// COM... DirectXを使用するために必要な物
+	// COM初期化
+	CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+
 	Application::Instance().Excute();
+
+	// COM 解放
+	CoUninitialize();
 	
 	return 0;
 }

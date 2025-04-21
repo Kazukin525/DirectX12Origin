@@ -50,3 +50,14 @@
 
 #define _USE_MATH_DEFINES
 #include <math.h>
+
+// DirectXに必要な物
+#pragma comment(lib,"d3d12.lib")
+#pragma comment(lib,"dxgi.lib")
+
+#include <d3d12.h>
+#include <dxgi1_6.h>
+
+
+// どこでも使いまわしたいプログラム
+#include "System/System.h"
