@@ -17,6 +17,9 @@ public:
 	// 終了メッセージが来たらfalseが来る
 	bool ProcessMessage();
 
+	// ウィンドウのハンドルを取得
+	HWND GetWndHandle()const { return m_hWnd; }
+
 private:
 	HWND m_hWnd;		// ウィンドウハンドル
 };

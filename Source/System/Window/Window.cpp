@@ -36,7 +36,7 @@ bool Window::Create(int clientWidth, int clientHeight, const std::wstring& title
 	wc.hInstance = hInst;							// インスタンスハンドル
 
 	// ウィンドウクラスの登録
-	if (!RegisterClassEx(&wc))
+	if (RegisterClassEx(&wc) == false)
 	{
 		return false;
 	}

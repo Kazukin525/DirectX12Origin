@@ -5,3 +5,6 @@
 
 // 描画関係のデバイス
 #include "../Graphics/GraphicsDevice.h"
+
+// RTVヒープ
+#include "../Graphics/RTVHeap/RTVHeap.h"

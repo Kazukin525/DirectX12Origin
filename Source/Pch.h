@@ -59,5 +59,5 @@
 #include <dxgi1_6.h>
 
 
-// どこでも使いまわしたいプログラム
+// どこでも使いまわしたいインクルードファイル
 #include "System/System.h"
