@@ -58,6 +58,8 @@
 #include <d3d12.h>
 #include <dxgi1_6.h>
 
+#pragma comment(lib,"DirectXTK12.lib")
+#include <SimpleMath.h>
 
 // どこでも使いまわしたいインクルードファイル
 #include "System/System.h"

@@ -20,6 +20,9 @@ public:
 	// ウィンドウのハンドルを取得
 	HWND GetWndHandle()const { return m_hWnd; }
 
+	// 解放
+	void Release();
+
 private:
 	HWND m_hWnd;		// ウィンドウハンドル
 };

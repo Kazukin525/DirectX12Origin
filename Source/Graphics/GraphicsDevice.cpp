@@ -93,6 +93,7 @@ void GraphicsDevice::ScreenFlip()
 
 	// 6.コマンドリストの同期を待つ
 	WaitForCommandQueue();
+
 	// 7.コマンドアロケーターとコマンドリストを初期化
 	m_pCmdAllocator->Reset();								// コマンドアロケーターの初期化
 	m_pCmdList->Reset(m_pCmdAllocator.Get(), nullptr);		// コマンドリストの初期化

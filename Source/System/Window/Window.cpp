@@ -1,18 +1,19 @@
 #include "Window.h"
 
+
 LRESULT WindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	// メッセージごとに処理を選択
 	switch (message)
 	{
-
+	// ×ボタンが押されたら
+	case WM_CLOSE:
+		break;
 	case WM_DESTROY:
-
 		// OSに終了を伝える
 		PostQuitMessage(0);
 		break;
 	default:
-		
 		// メッセージのデフォルト処理
 		return DefWindowProc(hWnd, message, wParam, lParam);
 		break;
@@ -89,4 +90,13 @@ bool Window::ProcessMessage()
 
 	// 成功
 	return true;
+}
+
+void Window::Release()
+{
+	if (m_hWnd)
+	{
+		DestroyWindow(m_hWnd);
+		m_hWnd = nullptr;
+	}
 }

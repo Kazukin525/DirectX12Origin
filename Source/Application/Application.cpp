@@ -7,7 +7,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	// COM... DirectXを使用するために必要な物
 	// COM初期化
-	CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+	//CoInitializeEx(nullptr, COINIT_MULTITHREADED);	// マルチスレッド
+	CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
 
 	Application::Instance().Excute();
 
@@ -42,7 +43,7 @@ void Application::Excute()
 			
 		}
 
-		GraphicsDevice::Instance().Prepare();
+		// GraphicsDevice::Instance().Prepare();
 
 		GraphicsDevice::Instance().ScreenFlip();
 	}

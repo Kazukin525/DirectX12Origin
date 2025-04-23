@@ -19,6 +19,12 @@ public:
 	// コマンドキューの同期待ち
 	void WaitForCommandQueue();
 
+	// デバイスのポインタ
+	ID3D12Device8* GetDevice()const					{ return m_pDevice.Get(); }
+
+	// コマンドリストのポインタ
+	ID3D12GraphicsCommandList6* GetCmdList()const	{ return m_pCmdList.Get(); }
+
 private:
 
 	// ファクトリーの作成
