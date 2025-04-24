@@ -55,6 +55,7 @@ void Mesh::Create(GraphicsDevice* pGraphicsDevice)
 
 void Mesh::DrawInstanced() const
 {
+	// punipuni
 	m_pDevice->GetCmdList()->IASetVertexBuffers(0, 1, &m_vbView);
 	m_pDevice->GetCmdList()->DrawInstanced(3, 1, 0, 0);
 }
