@@ -109,8 +109,36 @@ void RootSignature::Create(GraphicsDevice* pGraphicsDevice, const std::vector<Ra
 
 void RootSignature::CreateRange(D3D12_DESCRIPTOR_RANGE& pRange, RangeType type, int count)
 {
+	switch (type)
+	{
+	case RangeType::CBV:
+		pRange = {};
+		pRange.NumDescriptors = 1;
+		pRange.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_CBV;
+		pRange.BaseShaderRegister = count;
+		pRange.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
+		break;
+	case RangeType::SRV:
+		pRange = {};
+		pRange.NumDescriptors = 1;
+		pRange.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+		pRange.BaseShaderRegister = count;
+		pRange.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
+		break;
+	case RangeType::UAV:
+		pRange = {};
+		pRange.NumDescriptors = 1;
+		pRange.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_UAV;
+		pRange.BaseShaderRegister = count;
+		pRange.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
+		break;
+	default:
+		break;
+	}
 }
 
 void RootSignature::CreateStaticSampler(D3D12_STATIC_SAMPLER_DESC& pSamplerDesc, TextureAddressMode mode, D3D12Filter filter, int count)
 {
+	D3D12_TEXTURE_ADDRESS_MODE addressMode = mode == TextureAddressMode::Wrap ?
+		D3D12_TEXTURE_ADDRESS_MODE_WRAP : D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
 }

@@ -31,7 +31,7 @@ public:
 	void Create(GraphicsDevice* pGraphicsDevice, const std::vector<RangeType>& rangeTypes);
 
 	// ルートシグネチャのポインタ
-	// ID3D12RootSignature* GetRootSignature() {return m_pR}
+	ID3D12RootSignature* GetRootSignature() { return m_pRootSignature.Get(); }
 
 private:
 

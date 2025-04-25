@@ -9,11 +9,14 @@ void Mesh::Create(GraphicsDevice* pGraphicsDevice)
 	m_vertices[1] = {  1.0f, 1.0f };
 	m_vertices[2] = {  0.0f, 1.0f };
 
+	// ヒープ領域に情報をセット
+	// CPUからGPUにデータをアップロードするためのヒープを作成
 	D3D12_HEAP_PROPERTIES heapProp	= {};
 	heapProp.Type					= D3D12_HEAP_TYPE_UPLOAD;
 	heapProp.CPUPageProperty		= D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
 	heapProp.MemoryPoolPreference	= D3D12_MEMORY_POOL_UNKNOWN;
 
+	// リソースの設定
 	D3D12_RESOURCE_DESC resDesc		= {};
 	resDesc.Dimension				= D3D12_RESOURCE_DIMENSION_BUFFER;
 	resDesc.Width					= sizeof(Math::Vector3) * m_vertices.size();
@@ -25,6 +28,7 @@ void Mesh::Create(GraphicsDevice* pGraphicsDevice)
 	resDesc.Flags					= D3D12_RESOURCE_FLAG_NONE;
 	resDesc.Layout					= D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
 
+	// 頂点バッファの作成
 	auto hr = m_pDevice->GetDevice()->CreateCommittedResource
 	(
 		&heapProp,
@@ -39,7 +43,8 @@ void Mesh::Create(GraphicsDevice* pGraphicsDevice)
 	{
 		assert(0 && "頂点バッファー作成失敗");
 	}
-
+	
+	// GPUメモリ上に作成する
 	m_vbView.BufferLocation		= m_pVBuffer->GetGPUVirtualAddress();
 	m_vbView.SizeInBytes		= (UINT)resDesc.Width;
 	m_vbView.StrideInBytes		= sizeof(Math::Vector3);
@@ -55,7 +60,6 @@ void Mesh::Create(GraphicsDevice* pGraphicsDevice)
 
 void Mesh::DrawInstanced() const
 {
-	// punipuni
 	m_pDevice->GetCmdList()->IASetVertexBuffers(0, 1, &m_vbView);
 	m_pDevice->GetCmdList()->DrawInstanced(3, 1, 0, 0);
 }
